@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elektro J&P - Profesjonalne Usługi Elektryczne</title>
+    <style>
+        :root {
+            --primary-color: #ffcc00;
+            --secondary-color: #333333;
+            --accent-color: #0077cc;
+            --text-color: #444444;
+            --light-bg: #f5f5f5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: var(--secondary-color);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1200/600') center/cover no-repeat;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #e6b800;
+            transform: translateY(-2px);
+        }
+        
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: -10px;
+            left: 25%;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            background: var(--primary-color);
+            padding: 2rem;
+            font-size: 2.5rem;
+            text-align: center;
+            color: var(--secondary-color);
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+        }
+        
+        .service-content h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        
+        .about {
+            background: var(--light-bg);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-image {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-text h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .contact-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+        }
+        
+        .testimonials {
+            background: var(--light-bg);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .testimonial-text {
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            overflow: hidden;
+        }
+        
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .quote-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 3rem;
+            color: #f0f0f0;
+            z-index: 0;
+        }
+        
+        footer {
+            background: var(--secondary-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-logo {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo h2 {
+            font-size: 1.5rem;
+        }
+        
+        .footer-logo span {
+            color: var(--primary-color);
+        }
+        
+        .footer-links h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            background: #444;
+            border-radius: 50%;
+            color: white;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid #444;
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+        
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav {
+                margin-top: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            nav ul li {
+                margin-left: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 1rem;
+            }
+            
+            .nav-menu {
+                display: none;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            
+            .nav-menu.active {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">⚡</div>
+                    <h1>Elektro<span>J&P</span></h1>
+                </div>
+                <button class="mobile-menu-btn">☰</button>
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="#home">Strona główna</a></li>
+                        <li><a href="#services">Usługi</a></li>
+                        <li><a href="#about">O nas</a></li>
+                        <li><a href="#testimonials">Opinie</a></li>
+                        <li><a href="#contact">Kontakt</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>Profesjonalne Usługi Elektryczne</h2>
+            <p>Zapewniamy kompleksowe usługi elektryczne dla domów i firm. Szybko, solidnie i bezpiecznie.</p>
+            <a href="#contact" class="btn">Zamów Bezpłatną Wycenę</a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nasze Usługi</h2>
+                <p>Oferujemy szeroki zakres profesjonalnych usług elektrycznych</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🔌</div>
+                    <div class="service-content">
+                        <h3>Instalacje Elektryczne</h3>
+                        <p>Kompleksowe instalacje elektryczne w nowych budynkach oraz modernizacja istniejących instalacji. Wszystko zgodnie z najnowszymi normami bezpieczeństwa.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <div class="service-content">
+                        <h3>Naprawy i Awarie</h3>
+                        <p>Szybka reakcja na awarie elektryczne. Naprawiamy usterki sprawnie i skutecznie, minimalizując niedogodności dla klienta.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📋</div>
+                    <div class="service-content">
+                        <h3>Budowa rozdzielni elektrycznych</h3>
+                        <p>Projektowanie i wykonanie profesjonalnych rozdzielni elektrycznych dla domów, firm i obiektów przemysłowych zgodnie z najwyższymi standardami bezpieczeństwa.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💡</div>
+                    <div class="service-content">
+                        <h3>Oświetlenie</h3>
+                        <p>Projektowanie i montaż nowoczesnych systemów oświetleniowych zarówno wewnętrznych jak i zewnętrznych. Energooszczędne rozwiązania LED.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔒</div>
+                    <div class="service-content">
+                        <h3>Instalacje przemysłowe</h3>
+                        <p>Kompleksowe usługi w zakresie instalacji elektrycznych dla sektora przemysłowego. Projektowanie, wykonanie i modernizacja instalacji spełniających wysokie standardy bezpieczeństwa i efektywności.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">☀️</div>
+                    <div class="service-content">
+                        <h3>Inteligentny dom</h3>
+                        <p>Projektowanie i instalacja systemów inteligentnego domu. Zwiększ komfort, bezpieczeństwo i efektywność energetyczną swojego domu dzięki nowoczesnym rozwiązaniom automatyki domowej.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>O Naszej Firmie</h2>
+                <p>Poznaj nas lepiej</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="/api/placeholder/600/400" alt="Zespół Elektro J&P">
+                </div>
+                <div class="about-text">
+                    <h3>Doświadczenie i Profesjonalizm</h3>
+                    <p>Jesteśmy firmą z wieloletnim doświadczeniem na rynku usług elektrycznych na Podkarpaciu. Nasz zespół składa się z wykwalifikowanych elektryków z uprawnieniami SEP.</p>
+                    <p>Stawiamy na jakość, bezpieczeństwo i zadowolenie klienta. Każde zlecenie traktujemy indywidualnie, dostosowując rozwiązania do potrzeb i oczekiwań.</p>
+                    <p>Korzystamy z materiałów najwyższej jakości i najnowszych technologii, aby zapewnić trwałość i bezawaryjność naszych instalacji.</p>
+                    <h3>Dlaczego warto nam zaufać?</h3>
+                    <ul>
+                        <li>Wieloletnie doświadczenie w branży</li>
+                        <li>Wykwalifikowana kadra z uprawnieniami</li>
+                        <li>Gwarancja na wykonane usługi</li>
+                        <li>Konkurencyjne ceny</li>
+                        <li>Terminowość i rzetelność</li>
+                        <li>Kompleksowa obsługa na terenie całego Podkarpacia</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Opinie Klientów</h2>
+                <p>Co mówią o nas nasi klienci</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">Profesjonalna firma, pełen zakres usług elektrycznych. Polecam wszystkim, którzy cenią sobie jakość i terminowość. Instalacja elektryczna w moim zakładzie produkcyjnym została wykonana perfekcyjnie i zgodnie z harmonogramem.</p>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="/api/placeholder/100/100" alt="Klient">
+                        </div>
+                        <div>
+                            <strong>Marek Nowicki</strong>
+                            <p>Rzeszów</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">Szybka reakcja na awarię, fachowe doradztwo i uczciwe ceny. Elektryk przyjechał bardzo szybko i sprawnie usunął usterkę w naszym domu. Zdecydowanie polecam!</p>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="/api/placeholder/100/100" alt="Klient">
+                        </div>
+                        <div>
+                            <strong>Katarzyna Wiśniewska</strong>
+                            <p>Przemyśl</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">Jestem bardzo zadowolony z usług firmy Elektro J&P. System inteligentnego domu działa bez zarzutu, a obsługa techniczna jest zawsze dostępna w razie pytań. Profesjonaliści w każdym calu!</p>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="/api/placeholder/100/100" alt="Klient">
+                        </div>
+                        <div>
+                            <strong>Tomasz Kowalczyk</strong>
+                            <p>Sanok</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Kontakt</h2>
+                <p>Skontaktuj się z nami, aby uzyskać bezpłatną wycenę</p>
+            </div>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <h3>Telefon</h3>
+                    <p>+48 730 706 965</p>
+                    <p>+48 721 748 628</p>
+                    <p>Pon-Pt: 8:00-18:00</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">✉️</div>
+                    <h3>Email</h3>
+                    <p>szklannypatrycja@gmail.com</p>
+                    <p>Odpowiadamy w ciągu 24h</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">🏢</div>
+                    <h3>Adres</h3>
+                    <p>Dębno 149</p>
+                    <p>37-305 Dębno</p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>Wyślij zapytanie</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Imię i nazwisko</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefon</label>
+                        <input type="tel" id="phone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Rodzaj usługi</label>
+                        <select id="service" class="form-control" required>
+                            <option value="">Wybierz usługę</option>
+                            <option value="installation">Instalacja elektryczna</option>
+                            <option value="repair">Naprawa</option>
+                            <option value="switchboard">Budowa rozdzielni elektrycznych</option>
+                            <option value="lighting">Oświetlenie</option>
+                            <option value="industrial">Instalacje przemysłowe</option>
+                            <option value="smarthome">Inteligentny dom</option>
+                            <option value="other">Inna usługa</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Wiadomość</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    <div id="formStatus" class="form-group" style="display: none;"></div>
+                    <button type="submit" class="btn">Wyślij zapytanie</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <h2>Elektro<span>J&P</span></h2>
+                    </div>
+                    <p>Oferujemy profesjonalne usługi elektryczne na terenie całego województwa podkarpackiego. Zaufaj naszemu doświadczeniu i wiedzy.</p>
+                    <p>Telefon: +48 730 706 965 / +48 721 748 628</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">f</a>
+                        <a href="#" class="social-icon">in</a>
+                        <a href="#" class="social-icon">ig</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Szybkie linki</h3>
+                    <ul>
+                        <li><a href="#home">Strona główna</a></li>
+                        <li><a href="#services">Usługi</a></li>
+                        <li><a href="#about">O nas</a></li>
+                        <li><a href="#testimonials">Opinie</a></li>
+                        <li><a href="#contact">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Usługi</h3>
+                    <ul>
+                        <li><a href="#">Instalacje elektryczne</a></li>
+                        <li><a href="#">Naprawy i awarie</a></li>
+                        <li><a href="#">Budowa rozdzielni elektrycznych</a></li>
+                        <li><a href="#">Oświetlenie</a></li>
+                        <li><a href="#">Instalacje przemysłowe</a></li>
+                        <li><a href="#">Inteligentny dom</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Obszar działania</h3>
+                    <ul>
+                        <li><a href="#">Rzeszów</a></li>
+                        <li><a href="#">Przemyśl</a></li>
+                        <li><a href="#">Jarosław</a></li>
+                        <li><a href="#">Przeworsk</a></li>
+                        <li><a href="#">Leżajsk</a></li>
+                        <li><a href="#">Łańcut</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Elektro J&P. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (mobileMenuBtn && navMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navMenu && navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                    }
+                }
+            });
+        });
+        
+        // Form submission handler
+        const contactForm = document.getElementById('contactForm');
+        const formStatus = document.getElementById('formStatus');
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const serviceSelect = document.getElementById('service');
+                const service = serviceSelect.options[serviceSelect.selectedIndex].text;
+                const message = document.getElementById('message').value;
+                
+                // Create email body
+                const emailBody = `
+                    Nowe zapytanie ze strony:
+                    
+                    Imię i nazwisko: ${name}
+                    Email: ${email}
+                    Telefon: ${phone}
+                    Usługa: ${service}
+                    
+                    Wiadomość:
+                    ${message}
+                `;
+                
+                console.log('Wysyłanie maila na adres: szklannypatrycja@gmail.com');
+                console.log('Treść maila:', emailBody);
+                
+                // Show success message to user
+                if (formStatus) {
+                    formStatus.style.display = 'block';
+                    formStatus.innerHTML = '<p style="color: green;">Dziękujemy za wysłanie zapytania! Skontaktujemy się z Tobą wkrótce.</p>';
+                    formStatus.style.marginBottom = '1rem';
+                }
+                
+                // Clear form
+                contactForm.reset();
+                
+                // Hide success message after some time
+                setTimeout(() => {
+                    if (formStatus) {
+                        formStatus.style.display = 'none';
+                    }
+                }, 5000);
+            });
+        }
+    </script>
